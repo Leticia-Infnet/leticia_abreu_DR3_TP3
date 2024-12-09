@@ -113,9 +113,12 @@ prompt = PromptTemplate(
     input_variables=["tools", "tool_names", "chat_history", "input", "agent_scratchpad"]
 )
 
-# Create the agent and executor
+
 agent = create_react_agent(llm=llm, tools=tools, prompt=prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
+agent_executor = AgentExecutor(agent=agent,
+                               tools=tools,
+                               verbose=False,
+                               handle_parsing_errors=True)
 
 def main():
     chat_history = ""
